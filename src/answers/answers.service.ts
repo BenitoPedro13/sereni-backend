@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AnswersService {
+  constructor(private readonly prismaService: PrismaService) {}
   create(createAnswerDto: CreateAnswerDto) {
-    return 'This action adds a new answer';
+    return this.prismaService.answer.create({
+      data: createAnswerDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all answers`;
+  async findAll(themeStepId: number) {
+    return this.prismaService.answer.findMany({
+      where: {
+        themeStepId,
+      },
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} answer`;
+    return this.prismaService.answer.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updateAnswerDto: UpdateAnswerDto) {
-    return `This action updates a #${id} answer`;
+    return this.prismaService.answer.update({
+      where: { id },
+      data: updateAnswerDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} answer`;
+    return this.prismaService.answer.delete({
+      where: { id },
+    });
   }
 }

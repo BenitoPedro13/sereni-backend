@@ -1,5 +1,5 @@
 export class CreateAnswerDto {
   word: string;
-  correct: string;
-  themeStepId: number;
+  correct: boolean;
+  themeStepId?: number;
 }

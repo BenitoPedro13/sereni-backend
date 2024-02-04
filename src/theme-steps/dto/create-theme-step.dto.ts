@@ -1,5 +1,5 @@
 export class CreateThemeStepDto {
   image: string;
-  answersId?: number[];
+  name: string;
   themeId?: number;
 }

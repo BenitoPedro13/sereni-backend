@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { CreateThemeStepDto } from './dto/create-theme-step.dto';
 import { UpdateThemeStepDto } from './dto/update-theme-step.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ThemeStepsService {
+  constructor(private readonly prismaService: PrismaService) {}
   create(createThemeStepDto: CreateThemeStepDto) {
-    return 'This action adds a new themeStep';
+    return this.prismaService.themeStep.create({
+      data: createThemeStepDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all themeSteps`;
+  findAll(themeId: number) {
+    return this.prismaService.themeStep.findMany({
+      where: {
+        themeId,
+      },
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} themeStep`;
+    return this.prismaService.themeStep.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updateThemeStepDto: UpdateThemeStepDto) {
-    return `This action updates a #${id} themeStep`;
+    return this.prismaService.themeStep.update({
+      where: { id },
+      data: updateThemeStepDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} themeStep`;
+    return this.prismaService.themeStep.delete({
+      where: { id },
+    });
   }
 }

@@ -8,7 +8,13 @@ import { ThemeStepsModule } from './theme-steps/theme-steps.module';
 import { ThemesModule } from './themes/themes.module';
 
 @Module({
-  imports: [PrismaModule, ConfigModule.forRoot(), AnswersModule, ThemeStepsModule, ThemesModule],
+  imports: [
+    PrismaModule,
+    ConfigModule.forRoot(),
+    AnswersModule,
+    ThemeStepsModule,
+    ThemesModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

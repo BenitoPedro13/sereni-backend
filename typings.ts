@@ -55,17 +55,22 @@ export type Schema = {
   'Answer': {
     plain: {
       'correct': boolean;
+      'createdAt': string;
       'id': number;
       'themeStepId': number | null;
+      'updatedAt': string;
       'word': string;
     };
     nested: {
       'themeStep': Schema['ThemeStep']['plain'] & Schema['ThemeStep']['nested'];
     };
     flat: {
+      'themeStep:createdAt': string;
       'themeStep:id': number;
       'themeStep:image': string;
+      'themeStep:name': string;
       'themeStep:themeId': number | null;
+      'themeStep:updatedAt': string;
       'themeStep:theme:createdAt': string;
       'themeStep:theme:id': number;
       'themeStep:theme:initial_theme_screen_bg': string;
@@ -90,9 +95,12 @@ export type Schema = {
   };
   'ThemeStep': {
     plain: {
+      'createdAt': string;
       'id': number;
       'image': string;
+      'name': string;
       'themeId': number | null;
+      'updatedAt': string;
     };
     nested: {
       'theme': Schema['Theme']['plain'] & Schema['Theme']['nested'];

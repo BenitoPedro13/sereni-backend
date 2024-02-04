@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+} from '@nestjs/common';
 import { ThemeStepsService } from './theme-steps.service';
 import { CreateThemeStepDto } from './dto/create-theme-step.dto';
 import { UpdateThemeStepDto } from './dto/update-theme-step.dto';
@@ -13,8 +22,9 @@ export class ThemeStepsController {
   }
 
   @Get()
-  findAll() {
-    return this.themeStepsService.findAll();
+  findAll(@Req() req: any) {
+    const themeId: number = req.themeId;
+    return this.themeStepsService.findAll(themeId);
   }
 
   @Get(':id')
@@ -23,7 +33,10 @@ export class ThemeStepsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateThemeStepDto: UpdateThemeStepDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateThemeStepDto: UpdateThemeStepDto,
+  ) {
     return this.themeStepsService.update(+id, updateThemeStepDto);
   }
 
