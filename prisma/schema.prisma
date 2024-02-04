@@ -2,10 +2,38 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Theme {
+  id                   Int         @id @default(autoincrement())
+  name                 String
+  slug                 String      @unique
+  themeCardBg          String      @map(name: "theme_card_bg")
+  initialThemeScreenBg String      @map(name: "initial_theme_screen_bg")
+  themeSteps           ThemeStep[]
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+}
+
+model ThemeStep {
+  id      Int      @id @default(autoincrement())
+  image   String
+  answers Answer[]
+  Theme   Theme?   @relation(fields: [themeId], references: [id])
+  themeId Int?
+}
+
+model Answer {
+  id          Int        @id @default(autoincrement())
+  word        String
+  correct     Boolean
+  ThemeStep   ThemeStep? @relation(fields: [themeStepId], references: [id])
+  themeStepId Int?
 }
