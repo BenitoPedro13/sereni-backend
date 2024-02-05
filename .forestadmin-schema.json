@@ -202,13 +202,13 @@
           "isFilterable": true,
           "isPrimaryKey": false,
           "isReadOnly": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSortable": true,
           "isVirtual": false,
           "reference": "ThemeStep.id",
           "relationship": "BelongsTo",
           "type": "Number",
-          "validations": []
+          "validations": [{"type": "is present", "message": "Field is required"}]
         },
         {
           "defaultValue": null,
@@ -489,13 +489,13 @@
           "isFilterable": true,
           "isPrimaryKey": false,
           "isReadOnly": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSortable": true,
           "isVirtual": false,
           "reference": "Theme.id",
           "relationship": "BelongsTo",
           "type": "Number",
-          "validations": []
+          "validations": [{"type": "is present", "message": "Field is required"}]
         },
         {
           "defaultValue": null,

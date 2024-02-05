@@ -13,7 +13,16 @@ export class ThemesService {
   }
 
   findAll() {
-    return this.prismaService.theme.findMany();
+    return this.prismaService.theme.findMany({
+      relationLoadStrategy: 'query',
+      include: {
+        themeSteps: {
+          include: {
+            answers: true,
+          },
+        },
+      },
+    });
   }
 
   findOne(id: number) {

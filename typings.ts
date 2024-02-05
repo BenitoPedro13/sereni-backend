@@ -57,7 +57,7 @@ export type Schema = {
       'correct': boolean;
       'createdAt': string;
       'id': number;
-      'themeStepId': number | null;
+      'themeStepId': number;
       'updatedAt': string;
       'word': string;
     };
@@ -69,7 +69,7 @@ export type Schema = {
       'themeStep:id': number;
       'themeStep:image': string;
       'themeStep:name': string;
-      'themeStep:themeId': number | null;
+      'themeStep:themeId': number;
       'themeStep:updatedAt': string;
       'themeStep:theme:createdAt': string;
       'themeStep:theme:id': number;
@@ -99,7 +99,7 @@ export type Schema = {
       'id': number;
       'image': string;
       'name': string;
-      'themeId': number | null;
+      'themeId': number;
       'updatedAt': string;
     };
     nested: {
