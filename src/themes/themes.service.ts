@@ -28,6 +28,14 @@ export class ThemesService {
   findOne(id: number) {
     return this.prismaService.theme.findUnique({
       where: { id },
+      relationLoadStrategy: 'query',
+      include: {
+        themeSteps: {
+          include: {
+            answers: true,
+          },
+        },
+      },
     });
   }
 

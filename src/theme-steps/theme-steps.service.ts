@@ -23,6 +23,10 @@ export class ThemeStepsService {
   findOne(id: number) {
     return this.prismaService.themeStep.findUnique({
       where: { id },
+      relationLoadStrategy: 'query',
+      include: {
+        answers: true,
+      },
     });
   }
 
